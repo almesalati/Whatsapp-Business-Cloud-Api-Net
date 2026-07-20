@@ -214,5 +214,15 @@ namespace WhatsappBusiness.CloudApi
         public static string IndustryTemplateLibrary { get; private set; } = "message_template_library?industry={{industry}}";
 
         public static string LanguageTemplateLibrary { get; private set; } = "message_template_library?language={{language}}";
+
+        // In App Signup
+        public static string CreateSignUp { get; private set; } = "{{WABA-ID}}/signups";
+        public static string GetSignUp { get; private set; } = "/signups/{{SIGNUP-ID}}";
+        public static string ListSignUp { get; private set; } = "{{WABA-ID}}/signups?limit={{LIMIT}}";
+
+        // Direct Send API message sample
+        public static string DirectSendMessageSample { get; private set; } = "{{WABA-ID}}/message_samples";
+
+		public static string VoiceCallConfig { get; private set; } = "{{Phone-Number-ID}}/settings";
 	}
 }
