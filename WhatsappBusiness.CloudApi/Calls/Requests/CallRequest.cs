@@ -27,6 +27,14 @@ namespace WhatsappBusiness.CloudApi.Calls.Requests
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 		public CallSession Session { get; set; }
 
+		[JsonPropertyName("recording")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public CallRecording Recording { get; set; }
+
+		[JsonPropertyName("transcription")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public CallTranscription Transcription { get; set; }
+
 		[JsonPropertyName("biz_opaque_callback_data")]
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 		public string BizOpaqueCallbackData { get; set; }
@@ -40,5 +48,29 @@ namespace WhatsappBusiness.CloudApi.Calls.Requests
 
 		[JsonPropertyName("sdp")]
 		public string Sdp { get; set; }
+	}
+
+	public class CallRecording
+	{
+		[JsonPropertyName("status")]
+		public string Status { get; set; }
+
+		[JsonPropertyName("purpose")]
+		public string Purpose { get; set; }
+
+		[JsonPropertyName("announcement_language")]
+		public string AnnouncementLanguage { get; set; }
+	}
+
+	public class CallTranscription
+	{
+		[JsonPropertyName("status")]
+		public string Status { get; set; }
+
+		[JsonPropertyName("purpose")]
+		public string Purpose { get; set; }
+
+		[JsonPropertyName("announcement_language")]
+		public string AnnouncementLanguage { get; set; }
 	}
 }

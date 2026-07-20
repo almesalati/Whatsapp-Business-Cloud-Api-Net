@@ -59,6 +59,54 @@ namespace WhatsappBusiness.CloudApi.Webhook
 		[JsonPropertyName("duration")]
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		public int Duration { get; set; }
+
+		[JsonPropertyName("call_transcript")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public WhatsAppCallTranscript CallTranscript { get; set; }
+
+		[JsonPropertyName("call_recording")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public WhatsAppCallRecording CallRecording { get; set; }
+	}
+
+	public class WhatsAppCallRecording
+	{
+		[JsonPropertyName("type")]
+		public string Type { get; set; }
+
+		[JsonPropertyName("audio")]
+		public WhatsAppCallAudio Audio { get; set; }
+	}
+
+	public class WhatsAppCallTranscript
+	{
+		[JsonPropertyName("document")]
+		public WhatsAppCallDocument Document { get; set; }
+	}
+
+	public class WhatsAppCallAudio : WhatsAppCallBaseMedia
+	{
+
+	}
+
+	public class WhatsAppCallDocument : WhatsAppCallBaseMedia
+	{
+		
+	}
+
+	public class WhatsAppCallBaseMedia
+	{
+		[JsonPropertyName("id")]
+		public string Id { get; set; }
+
+		[JsonPropertyName("sha256")]
+		public string Sha256 { get; set; }
+
+		[JsonPropertyName("mime_type")]
+		public string MimeType { get; set; }
+
+		[JsonPropertyName("url")]
+		public string Url { get; set; }
 	}
 
 	public class Change
