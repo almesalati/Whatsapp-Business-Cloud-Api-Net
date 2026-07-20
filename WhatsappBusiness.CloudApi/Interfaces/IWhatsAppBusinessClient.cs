@@ -8,6 +8,7 @@ using WhatsappBusiness.CloudApi.BusinessProfile.Requests;
 using WhatsappBusiness.CloudApi.Calls.Requests;
 using WhatsappBusiness.CloudApi.Configurations;
 using WhatsappBusiness.CloudApi.Groups.Requests;
+using WhatsappBusiness.CloudApi.InAppSignup.Requests;
 using WhatsappBusiness.CloudApi.Media.Requests;
 using WhatsappBusiness.CloudApi.MessageHistory.Requests;
 using WhatsappBusiness.CloudApi.Messages.ReplyRequests;
@@ -1760,6 +1761,14 @@ namespace WhatsappBusiness.CloudApi.Interfaces
 		/// <param name="cancellationToken">Cancellation token</param>
 		/// <returns>BaseSuccessResponse</returns>
 		BaseSuccessResponse ManageWhatsAppCallAction(CallRequest callRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+		
+        Task<BaseSuccessResponse> ConfigureWhatsAppCallSettingsAsync(CallSettingRequest callSettingRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		BaseSuccessResponse ConfigureWhatsAppCallSettings(CallSettingRequest callSettingRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		Task<WhatsAppCallSettingResponse> GetWhatsAppCallSettingsAsync(WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		WhatsAppCallSettingResponse GetWhatsAppCallSettings(WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
 		#endregion
 
 		#region OAuth functions
@@ -1880,6 +1889,28 @@ namespace WhatsappBusiness.CloudApi.Interfaces
         Task<TemplateResponse> GetTemplateLibraryByLanguageAsync(string language, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, string pagingUrl = null, CancellationToken cancellationToken = default);
 
         TemplateResponse GetTemplateLibraryByLanguage(string language, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, string pagingUrl = null, CancellationToken cancellationToken = default);
+		#endregion
+
+		#region InAppSign Up
+        Task<InAppSignUpResponse> CreateInAppSignUpAsync(string whatsAppBusinessAccountId, CreateSignUpRequest createSignUpRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+		InAppSignUpResponse CreateInAppSignUp(string whatsAppBusinessAccountId, CreateSignUpRequest createSignUpRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		Task<InAppSignUpResponse> GetInAppSignUpAsync(string signUpId, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+		InAppSignUpResponse GetInAppSignUp(string signUpId, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+        Task<InAppSignUpResponse> GetInAppSignUpListAsync(string whatsAppBusinessAccountId, int limit = 10, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, string pagingUrl = null, CancellationToken cancellationToken = default);
+        InAppSignUpResponse GetInAppSignUpList(string whatsAppBusinessAccountId, int limit = 10, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, string pagingUrl = null, CancellationToken cancellationToken = default);
+
+        Task<InAppSignUpResponse> UpdateInAppSignUpAsync(string signUpId, UpdateSignUpRequest updateSignUpRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+        InAppSignUpResponse UpdateInAppSignUp(string signUpId, UpdateSignUpRequest updateSignUpRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+        #endregion
+
+        #region Direct Send API
+        Task<WhatsAppResponse> SendDirectSendMessageAsync(DirectSendMessageRequest directSendMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+        WhatsAppResponse SendDirectSendMessage(DirectSendMessageRequest directSendMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+        Task<BaseSuccessResponse> SendSampleMessagePayloadAsync(object payload, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+		BaseSuccessResponse SendSampleMessagePayload(object payload, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
 		#endregion
 	}
 }

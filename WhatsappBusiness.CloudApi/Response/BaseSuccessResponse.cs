@@ -10,5 +10,9 @@ namespace WhatsappBusiness.CloudApi.Response
 
 		[JsonPropertyName("success")]
         public bool Success { get; set; }
-    }
+
+		[JsonPropertyName("category")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public string Category { get; set; }
+	}
 }
