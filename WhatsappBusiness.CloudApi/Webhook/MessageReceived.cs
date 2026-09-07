@@ -58,7 +58,7 @@ public class MessageChange<TMessageType>
     [JsonPropertyName("value")]
     public MessageValue<TMessageType> Value { get; set; }
 
-    [JsonPropertyName("field")]
+	[JsonPropertyName("field")]
     public string Field { get; set; }
 }
 
@@ -71,10 +71,16 @@ public class MessageValue<TMessageType>
     public MessageMetadata Metadata { get; set; }
 
     [JsonPropertyName("contacts")]
-    public List<Contact> Contacts { get; set; }
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public List<Contact> Contacts { get; set; }
 
     [JsonPropertyName("messages")]
-    public List<TMessageType> Messages { get; set; }
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public List<TMessageType> Messages { get; set; }
+
+	[JsonPropertyName("standby")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public Standby<TMessageType> StandbyInboundMessage { get; set; }
 }
 
 public class MessageMetadata
@@ -86,7 +92,24 @@ public class MessageMetadata
     public string PhoneNumberId { get; set; }
 }
 
+public class Standby<TMessageType>
+{
+	[JsonPropertyName("contacts")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]   
+	public List<Contact> Contacts { get; set; }
 
+	[JsonPropertyName("messages")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public List<TMessageType> Messages { get; set; }
+
+	[JsonPropertyName("message_echoes")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public List<TMessageType> MessageEchoes { get; set; }
+
+    [JsonPropertyName("statuses")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public List<GenericStatus> Statuses { get; set; }
+}
 
 public class Contact
 {
@@ -97,7 +120,8 @@ public class Contact
     public string WaId { get; set; }
 
     [JsonPropertyName("user_id")]
-    public string UserId { get; set; }
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public string UserId { get; set; }
 
 	[JsonPropertyName("parent_user_id")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -124,8 +148,14 @@ public class Profile
 public class MessageContext
 {
     [JsonPropertyName("from")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string From { get; set; }
 
     [JsonPropertyName("id")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string Id { get; set; }
+
+    [JsonPropertyName("message_id")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string MessageId { get; set; }
 }
